@@ -21,12 +21,13 @@ class Scraper:
                 if self.is_valid_episode(soup):
                     script = self.get_script(soup)
                     print("Writing season", i, "episode", episode_number, "to file...")
-                    writer.write_script(name, i, episode_number, script)
+                    writer.write_script(name, i, episode_number, script, saving_dir)
                     # print(script)
                 else:
                     has_episode = False
-                    break
                 episode_number += 1
+            has_episode = True
+            episode_number = 1
 
     @staticmethod
     def connect_to_page(url):
