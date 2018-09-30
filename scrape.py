@@ -7,6 +7,7 @@ class Scraper:
 
     def scrape(self, name, season_from, season_to, saving_dir):
         print("Starting the scrape...")
+        name = clean_name(name)
         from_ = int(season_from)
         to_ = int(season_to)
         # seasons
@@ -53,3 +54,7 @@ def number_to_str(number):
         return "0" + str(number)
     else:
         return str(number)
+
+
+def clean_name(name):
+    return name.replace(' ', '-').replace('(', '-').replace(')', '')
