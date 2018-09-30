@@ -21,7 +21,7 @@ class Scraper:
                 soup = BeautifulSoup(self.connect_to_page(link_address), 'html.parser')
                 if self.is_valid_episode(soup):
                     script = self.get_script(soup)
-                    # writer.write_script(season_no, episode_number, script)
+                    writer.write_script(season_no, episode_number, script)
                     print(script)
                 else:
                     has_episode = False
