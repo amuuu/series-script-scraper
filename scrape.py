@@ -15,7 +15,7 @@ class Scraper:
         for i in range(from_, to_):
             while has_episode:
                 print("Scraping season", i, "episode", episode_number, "...")
-                link_address = self.source + name + "&episode=s" + self.number_to_str(i) + "e" + self.number_to_str(
+                link_address = self.source + name + "&episode=s" + number_to_str(i) + "e" + number_to_str(
                     episode_number)
                 soup = BeautifulSoup(self.connect_to_page(link_address), 'html.parser')
                 if self.is_valid_episode(soup):
@@ -35,13 +35,6 @@ class Scraper:
         return page_text
 
     @staticmethod
-    def number_to_str(number):
-        if number < 10:
-            return "0" + str(number)
-        else:
-            return str(number)
-
-    @staticmethod
     def is_valid_episode(soup):
         search_page = soup.find_all('div', {'class': 'search-and-alpha'})
         if len(search_page) is 0:
@@ -52,3 +45,10 @@ class Scraper:
     @staticmethod
     def get_script(soup):
         return soup.find('div', {'class': 'scrolling-script-container'}).get_text()
+
+
+def number_to_str(number):
+    if number < 10:
+        return "0" + str(number)
+    else:
+        return str(number)
